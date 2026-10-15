@@ -961,11 +961,11 @@ MonoBehaviour:
     - line: '|   activeInputHandler: 2'
     - line: '|   windowsGamepadBackendHint: 0'
     - line: '|   enableDirectStorage: 0'
-    - line: '|   cloudProjectId: 7129c344-7747-404a-a450-cd80502acba4'
+    - line: '|   cloudProjectId: 0b455aff-c823-459c-91ff-a42e2a6207ba'
     - line: '|   framebufferDepthMemorylessMode: 0'
     - line: '|   qualitySettingsNames: []'
-    - line: '|   projectName: Carnival Shooter'
-    - line: '|   organizationId: mateof2000'
+    - line: '|   projectName: Hamster Bash'
+    - line: '|   organizationId: kelliknight314'
     - line: '|   cloudEnabled: 0'
     - line: '|   legacyClampBlendShapeWeights: 0'
     - line: '|   hmiLoadingImage: {instanceID: 0}'
@@ -1005,3 +1005,23 @@ MonoBehaviour:
         m_WebGLClientBrowserPath: 
         m_WebGLClientBrowserType: 0
         m_WebGLTextureSubtarget: 0
+--- !u!114 &8758194073768167213
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 15012, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: BuildAutomationSettings
+  m_EditorClassIdentifier: UnityEditor.dll::UnityEditor.Build.Profile.BuildAutomationSettings
+  m_OperatingSystemValue: 
+  m_OperatingSystemFamily: 
+  m_XcodeVersion: 
+  m_AndroidSdkVersion: 
+  m_UnityArchitecture: 
+  m_MachineTypeId: 
+  m_CredentialsId: 
+  m_BuildTarget: 20
