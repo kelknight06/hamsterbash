@@ -1,7 +1,11 @@
+using TMPro;
 using UnityEngine;
 
 public class FaceDetector : MonoBehaviour
 {
+    [SerializeField]
+    private TextMeshProUGUI diceResultText;
+
     private void OnTriggerStay(Collider other)
     {
         // Check whether the object entering the trigger is a dice
@@ -27,6 +31,7 @@ public class FaceDetector : MonoBehaviour
             if (int.TryParse(other.name, out int faceNumber))
             {
                 dice.diceFaceNum = faceNumber;
+                diceResultText.text = "Dice Roll: " + faceNumber;
             }
         }
     }

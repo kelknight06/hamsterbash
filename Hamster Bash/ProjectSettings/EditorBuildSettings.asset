@@ -5,11 +5,23 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Main Board.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/Water Mini Game.unity
     guid: cde34a9018978c743afe65516250c49a
+  - enabled: 1
+    path: Assets/Scenes/CarnivalShooter.unity
+    guid: 19c0ccf4398c2c8449a7a85df877021f
+  - enabled: 1
+    path: Assets/Scenes/DiceTest.unity
+    guid: 069bcd11ad3bc904a81597f2e99e3bd0
+  - enabled: 1
+    path: Assets/Scenes/Quiz Minigame.unity
+    guid: 71bbb223663fac040bc19b0685c263e0
+  - enabled: 1
+    path: Assets/Scenes/Matching Mini Game/Matching Mini Game.unity
+    guid: 846189aa781ec0e44bd3b9620d01234a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
