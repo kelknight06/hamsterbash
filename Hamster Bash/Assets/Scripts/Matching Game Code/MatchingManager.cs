@@ -6,13 +6,20 @@ public class MatchingManager : MonoBehaviour
 {
     public MatchingBlock[] blocks;
 
+    private MinigameSceneController minigameSceneController;
+
     private MatchingBlock firstBlock;
     private MatchingBlock secondBlock;
     private bool isCheckingMatch = false;
 
     void Start()
     {
-        
+        minigameSceneController = FindFirstObjectByType<MinigameSceneController>();
+        if (minigameSceneController == null)
+        {
+            Debug.LogError("Minigame Scene Controller Not Found");
+        }
+
         List<int> symbols = new List<int>();
 
         for (int i = 1; i <= 8; i++)

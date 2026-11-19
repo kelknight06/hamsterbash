@@ -2,9 +2,13 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 using System.Collections.Generic;
 public class SpawnManager : MonoBehaviour
 {
+    private MinigameSceneController minigameSceneController;
+    private bool minigameWon = false;
+
     public TextMeshProUGUI timeText;
     public GameObject gameOver;
     public GameObject gameWin;
@@ -32,9 +36,15 @@ public class SpawnManager : MonoBehaviour
     public float currentTimeRate = 1.0f;
     public bool isGameActive;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void StartGame(int difficulty)
     {
+        minigameSceneController = FindFirstObjectByType<MinigameSceneController>();
+        if (minigameSceneController == null)
+        {
+            Debug.LogError("Minigame Scene Controller Not Found");
+        }
         //currentDifficulty = difficulty;
         isGameActive = true;
         if (difficulty == 1)
@@ -164,7 +174,8 @@ public class SpawnManager : MonoBehaviour
         middleImage.SetActive(false);
         gameWin.gameObject.SetActive(true);
         buildScreen.gameObject.SetActive(false);
-
+        minigameWon = true;
+        StartCoroutine(EndMinigame());
     }
 
     public void GameOver()
@@ -178,6 +189,15 @@ public class SpawnManager : MonoBehaviour
         CancelInvoke("SpawnRandomGem");
         player.SetActive(false);
         spawnAction.Disable();
-        
+        minigameWon = false;
+        StartCoroutine(EndMinigame());
+    }
+
+    private IEnumerator EndMinigame()
+    {
+        Debug.Log("Telling minigameSceneController to end game");
+        yield return new WaitForSeconds(4);
+
+        minigameSceneController.FinishMinigame(minigameWon);
     }
 }

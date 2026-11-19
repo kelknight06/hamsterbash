@@ -1,24 +1,21 @@
-using TMPro;
 using UnityEngine;
 
 public class FaceDetector : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI diceResultText;
+    private GameObject diceBlock;
+    [SerializeField]
+    private Dice dice;
 
     private void OnTriggerStay(Collider other)
     {
-        // Check whether the object entering the trigger is a dice
-        DiceBlock dice = other.GetComponentInParent<DiceBlock>();
-
-        if (dice == null)
+        if (diceBlock == null)
         {
             return;
         }
 
         // Get the Rigidbody attached to the dice
-        Rigidbody diceBody = dice.GetComponent<Rigidbody>();
-
+        Rigidbody diceBody = diceBlock.GetComponent<Rigidbody>();
         if (diceBody == null)
         {
             return;
@@ -30,8 +27,7 @@ public class FaceDetector : MonoBehaviour
             // Convert the collider's name into a face number
             if (int.TryParse(other.name, out int faceNumber))
             {
-                dice.diceFaceNum = faceNumber;
-                diceResultText.text = "Dice Roll: " + faceNumber;
+                dice.rollValue(faceNumber);
             }
         }
     }

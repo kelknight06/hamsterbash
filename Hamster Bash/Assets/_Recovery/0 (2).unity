@@ -3928,7 +3928,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 556976564}
-  m_VersionIndex: 1150
+  m_VersionIndex: 1153
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4522,12 +4522,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnManager
   timeText: {fileID: 514880278}
   gameOver: {fileID: 590302578}
+  gameWin: {fileID: 0}
   titleScreen: {fileID: 1463880802}
-  gems:
-  - {fileID: 8774046925708470709, guid: d75367f6cd47705468897a515732df0f, type: 3}
-  - {fileID: 8652620287734282385, guid: eba5a69d1112adb48afd6e008e7cc18e, type: 3}
-  - {fileID: 1206923018441679476, guid: 13d348e3701b04746a87f34c946fd197, type: 3}
-  - {fileID: 2752266846942812301, guid: 01fba43840893414a83863004e3a487b, type: 3}
+  player: {fileID: 0}
+  goodGems: []
+  badGems: []
+  leftImage: {fileID: 0}
+  rightImage: {fileID: 0}
+  middleImage: {fileID: 0}
+  buildScreen: {fileID: 0}
+  toyPieces: []
+  spawnLocations: []
   spawnAction:
     m_Name: Spawn
     m_Type: 0
@@ -4538,7 +4543,9 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
     m_Priority: 0
+  buildButton: {fileID: 0}
   timeValue: 60
+  currentTimeRate: 1
   isGameActive: 0
 --- !u!1 &2006702109
 GameObject:

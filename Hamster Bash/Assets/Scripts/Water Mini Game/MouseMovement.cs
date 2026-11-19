@@ -36,11 +36,4 @@ public class MouseMovement : MonoBehaviour
         // Apply rotations to transform
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
     }
-
-    void OnDisable()
-    {
-        // Unlock the cursor and make it visible.
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
 }
