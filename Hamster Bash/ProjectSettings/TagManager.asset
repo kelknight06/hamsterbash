@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - left toy
+  - right toy
+  - middle toy
+  - right check
+  - left check
+  - middle check
+  - left object
+  - right object
+  - middle object
+  - bad
   layers:
   - Default
   - TransparentFX

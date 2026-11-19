@@ -2,7 +2,7 @@
 
 using UnityEngine;
 using TMPro;
-
+using System.Collections.Generic;
 public class MathGameManager : MonoBehaviour
 {
     public static MathGameManager Instance;
@@ -32,6 +32,13 @@ public class MathGameManager : MonoBehaviour
 
     private bool gateSelected = false;
     private bool gameFinished = false;
+
+    private int nextPairID = 0;
+
+    private HashSet<int> answeredPairs =
+        new HashSet<int>();
+
+    public bool GameFinished => gameFinished;
 
     private void Awake()
     {
@@ -65,56 +72,43 @@ public class MathGameManager : MonoBehaviour
         HasResult = false;
 
         UpdateScoreUI();
-        GenerateNextGatePair();
+       
 
         Debug.Log("Difficulty Level: " + difficulty);
     }
+
 
     public void GenerateNextGatePair()
     {
         if (gameFinished)
             return;
 
-        gateSelected = false;
+        int pairID = nextPairID++;
 
-        // Generate one question for both paths.
+        // Generate a math problem.
         MathProblemGenerator.MathProblem problem =
             generator.GenerateProblem();
 
-        // Randomly select which path has the correct answer.
+        // Randomly choose the correct path.
         bool leftIsCorrect = Random.value > 0.5f;
 
         int wrongAnswer = GenerateWrongAnswer(problem.answer);
 
-        if (leftIsCorrect)
-        {
-            leftGate.Setup(
-                problem.question,
-                problem.answer,
-                true
-            );
+        leftGate.Setup(
+            problem.question,
+            leftIsCorrect ? problem.answer : wrongAnswer,
+            leftIsCorrect,
+            pairID
+        );
 
-            rightGate.Setup(
-                problem.question,
-                wrongAnswer,
-                false
-            );
-        }
-        else
-        {
-            leftGate.Setup(
-                problem.question,
-                wrongAnswer,
-                false
-            );
-
-            rightGate.Setup(
-                problem.question,
-                problem.answer,
-                true
-            );
-        }
+        rightGate.Setup(
+            problem.question,
+            leftIsCorrect ? wrongAnswer : problem.answer,
+            !leftIsCorrect,
+            pairID
+        );
     }
+
 
     private int GenerateWrongAnswer(int correctAnswer)
     {
@@ -128,12 +122,11 @@ public class MathGameManager : MonoBehaviour
         return correctAnswer + offset;
     }
 
-    public void ChooseGate(bool correct)
-    {
-        if (gateSelected || gameFinished)
-            return;
 
-        gateSelected = true;
+    public void ChooseGate(bool correct, int pairID)
+    {
+        if (gameFinished || !answeredPairs.Add(pairID))
+            return;
 
         if (correct)
         {
@@ -148,6 +141,7 @@ public class MathGameManager : MonoBehaviour
 
         UpdateScoreUI();
     }
+
 
     private void UpdateScoreUI()
     {
@@ -189,47 +183,37 @@ public class MathGameManager : MonoBehaviour
         difficulty = 1;
     }
 
+
+
     public void SetupGatePair(MathGate leftGate, MathGate rightGate)
     {
         if (gameFinished)
             return;
 
+        int pairID = nextPairID++;
+
         MathProblemGenerator.MathProblem problem =
             generator.GenerateProblem();
 
-        // Randomly choose the correct path.
         bool leftIsCorrect = Random.value > 0.5f;
 
         int wrongAnswer = GenerateWrongAnswer(problem.answer);
 
-        if (leftIsCorrect)
-        {
-            leftGate.Setup(
-                problem.question,
-                problem.answer,
-                true
-            );
+        leftGate.Setup(
+            problem.question,
+            leftIsCorrect ? problem.answer : wrongAnswer,
+            leftIsCorrect,
+            pairID
+        );
 
-            rightGate.Setup(
-                problem.question,
-                wrongAnswer,
-                false
-            );
-        }
-        else
-        {
-            leftGate.Setup(
-                problem.question,
-                wrongAnswer,
-                false
-            );
-
-            rightGate.Setup(
-                problem.question,
-                problem.answer,
-                true
-            );
-        }
+        rightGate.Setup(
+            problem.question,
+            leftIsCorrect ? wrongAnswer : problem.answer,
+            !leftIsCorrect,
+            pairID
+        );
     }
+
+
 
 }
