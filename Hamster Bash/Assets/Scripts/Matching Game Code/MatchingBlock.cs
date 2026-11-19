@@ -94,4 +94,18 @@ public class MatchingBlock : MonoBehaviour, IInteractable
             symbolText.gameObject.SetActive(false);
         }
     }
+
+    public void ResetBlock()
+    {
+        isMatched = false;
+        isRevealed = false;
+        if (blockRenderer != null)
+        {
+        blockRenderer.material.color = originalColor;
+        }
+        if (symbolText != null)
+        {
+            symbolText.gameObject.SetActive(false);
+        }
+    }
 }

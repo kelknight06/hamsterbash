@@ -5,14 +5,35 @@ using UnityEngine;
 public class MatchingManager : MonoBehaviour
 {
     public MatchingBlock[] blocks;
+    public GameTimer gameTimer;
+    public TMPro.TMP_Text roundText;
 
     private MatchingBlock firstBlock;
     private MatchingBlock secondBlock;
+
     private bool isCheckingMatch = false;
+    private bool allBlocksMatched = false;
+    public bool AllBlocksMatched => allBlocksMatched;
+
+    private int matchedPairs = 0;
+    public int totalRounds = 1;
+    private int currentRound = 1;
+
+    public bool FinalRoundCompleted => currentRound >= totalRounds && allBlocksMatched;
 
     void Start()
     {
-        
+        RandomizeSymbols();
+        UpdateRoundText();
+    }
+
+    void UpdateRoundText()
+    {
+        roundText.text = currentRound + "/" + totalRounds;
+    }
+
+    void RandomizeSymbols()
+    {
         List<int> symbols = new List<int>();
 
         for (int i = 1; i <= 8; i++)
@@ -60,6 +81,12 @@ public class MatchingManager : MonoBehaviour
         {
             firstBlock.SetMatched();
             secondBlock.SetMatched();
+            matchedPairs = matchedPairs + 1;
+            if (matchedPairs == blocks.Length / 2)
+                {
+                    allBlocksMatched = true;
+                    CompleteRound();
+                }
 
             ResetSelection();
         }
@@ -82,10 +109,35 @@ public class MatchingManager : MonoBehaviour
 
         isCheckingMatch = false;
     }
+    
 
     void ResetSelection()
     {
         firstBlock = null;
         secondBlock = null;
+    }
+
+    public void ResetBoard()
+    {
+        for (int i = 0; i < blocks.Length; i++)
+        {
+            blocks[i].ResetBlock();
+        }
+        matchedPairs = 0;
+        allBlocksMatched = false;
+        RandomizeSymbols();
+    }
+
+    public void CompleteRound()
+    {
+        if (currentRound >= totalRounds)
+        {
+            return;
+        }
+
+        currentRound++;
+        UpdateRoundText();
+        gameTimer.AddRoundTime();
+        ResetBoard();
     }
 }
