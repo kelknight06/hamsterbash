@@ -2,7 +2,7 @@
 - Project name: Hamster Bash
 - Unity version: Unity 6000.6.3f1
 - Active game object:
-  - Name: Gate
+  - Name: Text (TMP)
   - Tag: Untagged
-  - Layer: Default
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
