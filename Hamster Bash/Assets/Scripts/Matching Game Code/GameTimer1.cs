@@ -1,9 +1,8 @@
 using UnityEngine;
 using TMPro;
 
-public class GameTimer : MonoBehaviour
+public class GameTimer1 : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("Timer Settings")]
     public float timeRemaining = 60f;
     public float extraTimePerRound = 15f;
@@ -22,7 +21,6 @@ public class GameTimer : MonoBehaviour
     public MonoBehaviour playerLook;
 
 
-    // Update is called once per frame
     void Update()
     {
         if (matchingManager.FinalRoundCompleted && !gameIsWon)

@@ -1,13 +1,6 @@
 using UnityEngine;
 using TMPro;
-/*
-    I want this code to assign a random number(1-8) to 16 blocks(only 2 can have the same numbers)
 
-    each number is gonna have its own symbol in it
-
-    when a block is interacted with it stays "activated" until another block is chose, 
-    if the both blocks are the same symbol, then the block get marked as done
-    */
 public class MatchingBlock : MonoBehaviour, IInteractable
 {
     public int blockID;

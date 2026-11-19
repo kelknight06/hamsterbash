@@ -15,7 +15,6 @@ public class PlayerLook : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 MouseInput = new Vector2

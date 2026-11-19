@@ -5,7 +5,7 @@ using UnityEngine;
 public class MatchingManager : MonoBehaviour
 {
     public MatchingBlock[] blocks;
-    public GameTimer gameTimer;
+    public GameTimer1 gameTimer;
     public TMPro.TMP_Text roundText;
 
     private MatchingBlock firstBlock;
